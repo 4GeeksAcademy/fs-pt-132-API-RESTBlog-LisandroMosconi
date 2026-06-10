@@ -47,6 +47,9 @@ class Film(db.Model):
     reviews: Mapped[list["Review"]] = relationship(back_populates="film")
     favorites: Mapped[list["FavoriteFilm"]] = relationship(back_populates="film")
 
+    def __repr__(self):
+        return self.title
+
     def serialize(self):
         return {
             "id": self.id,
@@ -75,6 +78,9 @@ class Character(db.Model):
 
     favorites: Mapped[list["FavoriteCharacter"]] = relationship(back_populates="character")
 
+    def __repr__(self):
+        return self.name
+
     def serialize(self):
         return {
             "id": self.id,
@@ -100,6 +106,9 @@ class Location(db.Model):
     film: Mapped["Film"] = relationship(back_populates="locations")
 
     favorites: Mapped[list["FavoriteLocation"]] = relationship(back_populates="location")
+
+    def __repr__(self):
+        return self.name
 
     def serialize(self):
         return {
